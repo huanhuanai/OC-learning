@@ -67,7 +67,7 @@
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dPQ-Uc-2a7" secondAttribute="bottom" constant="3" id="JPO-cD-lmp"/>
                     <constraint firstAttribute="trailing" secondItem="zjm-JW-R9g" secondAttribute="trailing" constant="20" id="Jlv-m1-uDP"/>
                     <constraint firstItem="wqQ-fI-ctw" firstAttribute="leading" secondItem="o7b-KZ-cGQ" secondAttribute="leading" constant="20" id="LB9-OT-bGe"/>
-                    <constraint firstItem="sy7-iy-ujg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="o7b-KZ-cGQ" secondAttribute="top" constant="2" id="WU4-FW-QIK"/>
+                    <constraint firstItem="sy7-iy-ujg" firstAttribute="top" secondItem="o7b-KZ-cGQ" secondAttribute="top" constant="2" id="WU4-FW-QIK"/>
                     <constraint firstAttribute="trailing" secondItem="dPQ-Uc-2a7" secondAttribute="trailing" constant="313" id="YJR-Ip-eei"/>
                     <constraint firstItem="wqQ-fI-ctw" firstAttribute="centerY" secondItem="o7b-KZ-cGQ" secondAttribute="centerY" id="anu-bY-ag1"/>
                     <constraint firstItem="sy7-iy-ujg" firstAttribute="leading" secondItem="wqQ-fI-ctw" secondAttribute="trailing" constant="14" id="aw1-OT-5Su"/>
@@ -82,7 +82,7 @@
                 <outlet property="thumbnailView" destination="wqQ-fI-ctw" id="XXB-WC-wwI"/>
                 <outlet property="valueLabel" destination="zjm-JW-R9g" id="LTY-a7-gAf"/>
             </connections>
-            <point key="canvasLocation" x="-641" y="-267"/>
+            <point key="canvasLocation" x="-671" y="-340"/>
         </tableViewCell>
     </objects>
 </document>
