@@ -12,7 +12,7 @@
 #import "HHAImageStore.h"
 #import "HHAItemStore.h"
 
-@interface HHADetailViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
+@interface HHADetailViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIPopoverPresentationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 
-@property (nonatomic, strong) UIPopoverController *imagePickerPopover;
+@property (nonatomic, strong) UIPopoverPresentationController *imagePickerPopover;
 @property (weak, nonatomic) UIImageView *imageView;
 
 @end
@@ -32,14 +32,16 @@
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         if (isNew) {
-            UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                      target:self
-                                                                                      action:@selector(save:)];
+            UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
+                                         initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                              target:self
+                                                              action:@selector(save:)];
             self.navigationItem.rightBarButtonItem = doneItem;
 
-            UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                        target:self
-                                                                                        action:@selector(cancel:)];
+            UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc]
+                                           initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                target:self
+                                                                action:@selector(cancel:)];
             self.navigationItem.leftBarButtonItem = cancelItem;
         }
     }
@@ -57,16 +59,17 @@
 }
 
 - (IBAction)takePicture:(id)sender {
-    if ([self.imagePickerPopover isPopoverVisible]) {
+    if (self.imagePickerPopover) {
         //如果imagePickerPopover指向的是有效的UIpopoverController对象，
         //并且该对象的视图是可见的，就关闭这个对象，并将其设置为nil
-        [self.imagePickerPopover dismissPopoverAnimated:YES];
         self.imagePickerPopover = nil;
         return;
     }
 
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 
+    imagePicker.preferredContentSize = CGSizeMake(300, 400);
+    imagePicker.modalPresentationStyle = UIModalPresentationPopover;
     //如果设备支持相机，就使用拍照模式
     //否则让用户从照片库中选择照片
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -81,15 +84,31 @@
     //显示UIImagePickerController对象
     //创建UIPopoverController对象前先检查当前设备是否是iPad
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        //创建UIPopoverController对象，用于显示UIImagePickerController对象
-        self.imagePickerPopover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
-        self.imagePickerPopover.delegate = self;
-
-        //显示UIPopoverController对象，
-        //sender指向的是代表相机按钮的UIBarButton对象
-        [self.imagePickerPopover presentPopoverFromBarButtonItem:sender
-                                        permittedArrowDirections:UIPopoverArrowDirectionAny
-                                                        animated:YES];
+        
+        UIPopoverPresentationController *presentationController =
+        [imagePicker popoverPresentationController];
+        
+        // 设置委托协议
+        presentationController.delegate = self;
+        
+        // 设置背景色
+        presentationController.backgroundColor = imagePicker.view.backgroundColor;
+        
+        //设置ButtonItem
+        presentationController.barButtonItem = sender;
+        
+        // 以模态形式呈现视图
+        [self presentViewController:imagePicker animated:YES completion:nil];
+        
+//        //创建UIPopoverController对象，用于显示UIImagePickerController对象
+//        self.imagePickerPopover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+//        self.imagePickerPopover.delegate = self;
+//
+//        //显示UIPopoverController对象，
+//        //sender指向的是代表相机按钮的UIBarButton对象
+//        [self.imagePickerPopover presentPopoverFromBarButtonItem:sender
+//                                        permittedArrowDirections:UIPopoverArrowDirectionAny
+//                                                        animated:YES];
     } else {
         [self presentViewController:imagePicker
                            animated:YES
@@ -132,11 +151,6 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
 }
 
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
-    NSLog(@"User dismissed popover");
-    self.imagePickerPopover = nil;
-}
-
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
@@ -166,7 +180,7 @@
     //判断UIPopoverController对象是否存在
     if (self.imagePickerPopover) {
         //关闭UIPopoverController对象
-        [self.imagePickerPopover dismissPopoverAnimated:YES];
+//        [self.imagePickerPopover dismissPopoverAnimated:YES];
         self.imagePickerPopover = nil;
     } else {
         //关闭以模态形式显示的UIImagePickerController对象
@@ -199,18 +213,16 @@
                                @"toolbar": self.toolbar };
 
     //imageView的左边和右边与父视图的距离都是0点
-    NSArray *horizontalConstraints = [NSLayoutConstraint
-                                      constraintsWithVisualFormat:@"H:|-0-[imageView]-0-|"
-                                                          options:0
-                                                          metrics:nil
-                                                            views:nameMap];
+    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imageView]-0-|"
+                                                                             options:0
+                                                                             metrics:nil
+                                                                               views:nameMap];
 
     //imageView的顶边与dateLabel的距离是8点，底边与toolbar的距离也是8点
-    NSArray *veiticalConstraints = [NSLayoutConstraint
-                                    constraintsWithVisualFormat:@"V:[dateLabel]-[imageView]-[toolbar]"
-                                                        options:0
-                                                        metrics:nil
-                                                          views:nameMap];
+    NSArray *veiticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[dateLabel]-[imageView]-[toolbar]"
+                                                                           options:0
+                                                                           metrics:nil
+                                                                             views:nameMap];
 
     [self.view addConstraints:horizontalConstraints];
     [self.view addConstraints:veiticalConstraints];
@@ -254,6 +266,11 @@
     item.itemName = self.nameField.text;
     item.serialNumber = self.serialNumberField.text;
     item.valueInDollars = [self.vlaueField.text intValue];
+}
+
+//返回none的时候才会有弹出框效果
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
+    return UIModalPresentationNone;
 }
 
 @end

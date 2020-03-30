@@ -37,7 +37,11 @@
     self = [super init];
     if (self) {
         NSString *path = [self itemArchivePath];
-        _privateItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSData *data = [fileManager contentsAtPath:path];
+        NSError *error;
+        _privateItems = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSArray class], [HHAItem class],[NSDate class],[UIImage class], nil]  fromData:data error:&error];
+        //如果之前没有保存过privateItems，就创建一个新的
         if (!_privateItems) {
             _privateItems = [[NSMutableArray alloc] init];
         }
@@ -82,15 +86,19 @@
     
     //从documentDirectories数组获取第一个，也是唯一文档目录路径
     NSString *documentDirectory = [documentDirectories firstObject];
-    
-    return [documentDirectory stringByAppendingPathComponent:@"items.archive"];
+    NSString *itemPath = [documentDirectory stringByAppendingPathComponent:@"items.archive"];
+    return itemPath;
 }
 
 - (BOOL)saveChanges {
     NSString *path = [self itemArchivePath];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:(NSArray<HHAItem *> *)self.privateItems requiringSecureCoding:YES error:&error];
     
-    //如果固化成功就返回YES
-    return [NSKeyedArchiver archiveRootObject:self.privateItems toFile:path];
+    [fileManager createFileAtPath:path contents:data attributes:nil];
+    NSLog(@"");
+    return YES;
 }
 
 @end

@@ -14,9 +14,11 @@
 #import "HHAImageStore.h"
 #import "HHAImageViewController.h"
 
-@interface HHAItemsViewController ()<UIPopoverControllerDelegate>
+@interface HHAItemsViewController ()<UIPopoverPresentationControllerDelegate>
 
-@property (nonatomic, strong) UIPopoverController *imagePopover;
+@property (nonatomic, strong) UIPopoverPresentationController *imagePopover;
+
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -40,6 +42,20 @@
         navItem.leftBarButtonItem = self.editButtonItem;
     }
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    return [self init];
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    return [self init];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    return [self init];
 }
 
 - (instancetype)initWithStyle:(UITableViewStyle)style {
@@ -89,21 +105,17 @@
             if (!img) {
                 return;
             }
-
-            //根据UITableView对象的坐标系获取UIImageView对象的位置和大小
-            CGRect rect = [self.view convertRect:strongCell.thumbnailView.bounds fromView:strongCell.thumbnailView];
-//            NSLog(@"Going to show image for  %@", rect);
-
-            //创建HHAImageViewController对象并为image属性赋值
             HHAImageViewController *ivc = [[HHAImageViewController alloc] init];
             ivc.image = img;
 
-            //根据UIImageView对象的位置和大小
-            //显示一个大小为600*600点的UIPopoverController对象
-            self.imagePopover = [[UIPopoverController alloc] initWithContentViewController:ivc];
-            self.imagePopover.delegate = self;
-            self.imagePopover.popoverContentSize = CGSizeMake(600, 600);
-            [self.imagePopover presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            ivc.preferredContentSize = CGSizeMake(600, 600);        //popover视图的大小
+            ivc.modalPresentationStyle = UIModalPresentationPopover;//这句一定要
+            
+            self.imagePopover = ivc.popoverPresentationController;
+            self.imagePopover.delegate = self;     //代理一定要
+            self.imagePopover.sourceView = strongCell.thumbnailView;
+            [self.imagePopover setPermittedArrowDirections:UIPopoverArrowDirectionLeft];
+            [self presentViewController:ivc animated:YES completion:nil];
         }
     };
 
@@ -124,15 +136,6 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     [[HHAItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
-}
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 100;
-//}
-
-#pragma mark - UIPopoverControllerDelegate
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
-    self.imagePopover = nil;
 }
 
 #pragma mark - view life cycle
@@ -163,10 +166,6 @@
     detailViewController.item = newItem;
 
     detailViewController.dismissBlock = ^{
-//        NSInteger lastRow = [[[HHAItemStore sharedStore] allItems] indexOfObject:newItem];
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lastRow inSection:0];
-//
-//        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
         [self.tableView reloadData];
     };
 
@@ -175,6 +174,10 @@
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
 
     [self presentViewController:navController animated:YES completion:nil];
+}
+
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
+    return UIModalPresentationNone;
 }
 
 @end
