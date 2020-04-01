@@ -11,7 +11,6 @@
 @interface HHAItemCell ()
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewWidthConstraint;
 
 @end
 
@@ -47,7 +46,6 @@
     NSString *userSize = [[UIApplication sharedApplication] preferredContentSizeCategory];
     NSNumber *imageSize = imageSizeDictionary[userSize];
     self.imageViewHeightConstraint.constant = imageSize.floatValue;
-    self.imageViewWidthConstraint.constant = imageSize.floatValue;
 }
 
 - (void)awakeFromNib {

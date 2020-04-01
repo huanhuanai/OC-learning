@@ -69,6 +69,7 @@
     [defaultCenter removeObserver:self];
 }
 
+#pragma mark - 设置字体的方法
 - (void)updateFonts {
     UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
 
@@ -157,6 +158,7 @@
     }
 }
 
+#pragma mark - 为navigationItem的左右Button设置方法
 - (void)save:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
 }
@@ -168,17 +170,20 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
 }
 
+#pragma mark - UIContentContainer
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
     [self prepareViewsForSize:size];
 }
 
+#pragma mark - textField收起键盘
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
 
+#pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoKey, id> *)info {
     //通过info字典获取选择的照片
     UIImage *image = info[UIImagePickerControllerOriginalImage];
@@ -201,6 +206,7 @@
     }
 }
 
+#pragma mark - view life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIImageView *iv = [[UIImageView alloc] initWithImage:nil];
