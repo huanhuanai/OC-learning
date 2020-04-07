@@ -7,7 +7,7 @@
 //
 
 #import "HHAItemStore.h"
-#import "HHAItem.h"
+#import "HHAItem+CoreDataClass.h"
 #import "HHAImageStore.h"
 #import <CoreData/CoreData.h>
 

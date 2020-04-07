@@ -10,7 +10,7 @@
 		063D2D79241BA4DC003BAFD7 /* HHAImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 063D2D78241BA4DC003BAFD7 /* HHAImageStore.m */; };
 		06728F9E24192E0A00FD0F37 /* HHADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06728F9C24192E0A00FD0F37 /* HHADetailViewController.m */; };
 		06728F9F24192E0A00FD0F37 /* HHADetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06728F9D24192E0A00FD0F37 /* HHADetailViewController.xib */; };
-		0676F241243AE8F900757410 /* HHAItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0676F23F243AE8F900757410 /* HHAItem.m */; };
+		0676F241243AE8F900757410 /* HHAItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0676F23F243AE8F900757410 /* HHAItem+CoreDataClass.m */; };
 		0676F242243AE8F900757410 /* HHAItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0676F240243AE8F900757410 /* HHAItem+CoreDataProperties.m */; };
 		068924C1243A3BBA002D536D /* Homepwner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 068924BF243A3BBA002D536D /* Homepwner.xcdatamodeld */; };
 		068924C4243A3D00002D536D /* HHAImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 068924C3243A3D00002D536D /* HHAImageTransformer.m */; };
@@ -35,8 +35,8 @@
 		06728F9D24192E0A00FD0F37 /* HHADetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HHADetailViewController.xib; sourceTree = "<group>"; };
 		0676F210243AD41A00757410 /* Homepwner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Homepwner-Bridging-Header.h"; sourceTree = "<group>"; };
 		0676F23D243AE8F900757410 /* HHAItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HHAItem+CoreDataProperties.h"; sourceTree = "<group>"; };
-		0676F23E243AE8F900757410 /* HHAItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHAItem.h; sourceTree = "<group>"; };
-		0676F23F243AE8F900757410 /* HHAItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHAItem.m; sourceTree = "<group>"; };
+		0676F23E243AE8F900757410 /* HHAItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HHAItem+CoreDataClass.h"; sourceTree = "<group>"; };
+		0676F23F243AE8F900757410 /* HHAItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HHAItem+CoreDataClass.m"; sourceTree = "<group>"; };
 		0676F240243AE8F900757410 /* HHAItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HHAItem+CoreDataProperties.m"; sourceTree = "<group>"; };
 		068924C0243A3BBA002D536D /* Homepwner.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; path = Homepwner.xcdatamodel; sourceTree = "<group>"; };
 		068924C2243A3D00002D536D /* HHAImageTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHAImageTransformer.h; sourceTree = "<group>"; };
@@ -73,6 +73,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		066CFA4B243CC57E0078F877 /* HHAItem+CoreDataClass */ = {
+			isa = PBXGroup;
+			children = (
+				0676F23E243AE8F900757410 /* HHAItem+CoreDataClass.h */,
+				0676F23F243AE8F900757410 /* HHAItem+CoreDataClass.m */,
+				0676F23D243AE8F900757410 /* HHAItem+CoreDataProperties.h */,
+				0676F240243AE8F900757410 /* HHAItem+CoreDataProperties.m */,
+				068924BF243A3BBA002D536D /* Homepwner.xcdatamodeld */,
+			);
+			path = "HHAItem+CoreDataClass";
+			sourceTree = "<group>";
+		};
 		06CF9BBD241503D80020F927 = {
 			isa = PBXGroup;
 			children = (
@@ -93,10 +105,7 @@
 		06CF9BC8241503D90020F927 /* Homepwner */ = {
 			isa = PBXGroup;
 			children = (
-				0676F23E243AE8F900757410 /* HHAItem.h */,
-				0676F23F243AE8F900757410 /* HHAItem.m */,
-				0676F23D243AE8F900757410 /* HHAItem+CoreDataProperties.h */,
-				0676F240243AE8F900757410 /* HHAItem+CoreDataProperties.m */,
+				066CFA4B243CC57E0078F877 /* HHAItem+CoreDataClass */,
 				06CF9BC9241503D90020F927 /* HHAAppDelegate.h */,
 				06CF9BCA241503D90020F927 /* HHAAppDelegate.m */,
 				06CF9BE2241508800020F927 /* HHAItemsViewController.h */,
@@ -104,7 +113,6 @@
 				06BC24BC242CB86400D08AD6 /* HHAItemCell.h */,
 				06BC24BD242CB86400D08AD6 /* HHAItemCell.m */,
 				06BC24BF242CB89C00D08AD6 /* HHAItemCell.xib */,
-				068924BF243A3BBA002D536D /* Homepwner.xcdatamodeld */,
 				06728F9B24192E0A00FD0F37 /* HHADetailViewController.h */,
 				06728F9C24192E0A00FD0F37 /* HHADetailViewController.m */,
 				06728F9D24192E0A00FD0F37 /* HHADetailViewController.xib */,
@@ -202,7 +210,7 @@
 			files = (
 				06BC24BE242CB86400D08AD6 /* HHAItemCell.m in Sources */,
 				06E62771243B569800B3B68C /* HHAAssetTypeViewController.m in Sources */,
-				0676F241243AE8F900757410 /* HHAItem.m in Sources */,
+				0676F241243AE8F900757410 /* HHAItem+CoreDataClass.m in Sources */,
 				06CF9BCB241503D90020F927 /* HHAAppDelegate.m in Sources */,
 				06728F9E24192E0A00FD0F37 /* HHADetailViewController.m in Sources */,
 				06CF9BF3241517AA0020F927 /* HHAItemStore.m in Sources */,

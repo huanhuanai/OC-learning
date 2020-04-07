@@ -7,7 +7,7 @@
 //
 //
 
-#import "HHAItem.h"
+#import "HHAItem+CoreDataClass.h"
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -24,8 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) UIImage *thumbnail;
 @property (nonatomic) int valueInDollars;
 @property (nullable, nonatomic, retain) NSManagedObject *assetType;
-
-
 
 @end
 

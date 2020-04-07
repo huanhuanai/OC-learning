@@ -9,7 +9,7 @@
 #import "HHADetailViewController.h"
 #import "HHAItemsViewController.h"
 #import "HHAAssetTypeViewController.h"
-#import "HHAItem.h"
+#import "HHAItem+CoreDataClass.h"
 #import "HHAImageStore.h"
 #import "HHAItemStore.h"
 

@@ -8,7 +8,7 @@
 
 #import "HHAAssetTypeViewController.h"
 #import "HHAItemStore.h"
-#import "HHAItem.h"
+#import "HHAItem+CoreDataClass.h"
 
 @interface HHAAssetTypeViewController ()
 
