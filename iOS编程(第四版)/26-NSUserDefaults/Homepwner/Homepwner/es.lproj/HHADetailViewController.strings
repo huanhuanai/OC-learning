@@ -1,0 +1,17 @@
+
+/* Class = "UILabel"; text = "Serial"; ObjectID = "7S4-q7-aqE"; */
+"7S4-q7-aqE.text" = "Número de serie";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ewg-lI-vAH"; */
+"ewg-lI-vAH.text" = "Label";
+
+/* Class = "UILabel"; text = "Value"; ObjectID = "tGG-t6-Xp8"; */
+"tGG-t6-Xp8.text" = "Valor";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "w27-2m-h0S"; */
+"w27-2m-h0S.title" = "Item";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "xSW-9d-QJa"; */
+"xSW-9d-QJa.text" = "Nombre";
+
+
