@@ -10,8 +10,6 @@
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 
-
-
 @implementation BNRAssetTypeViewController
 
 - (instancetype)init
