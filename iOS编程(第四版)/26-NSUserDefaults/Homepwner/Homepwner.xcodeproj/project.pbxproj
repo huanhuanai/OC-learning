@@ -25,7 +25,7 @@
 		06CF9BF3241517AA0020F927 /* HHAItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CF9BF2241517AA0020F927 /* HHAItemStore.m */; };
 		06D184222445C55700804CC9 /* HHADetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06D184242445C55700804CC9 /* HHADetailViewController.xib */; };
 		06D184302445C9AB00804CC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06D1842F2445C9AB00804CC9 /* Localizable.strings */; };
-		06D1844D2446003300804CC9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06D1844C2446003300804CC9 /* Settings.bundle */; };
+		06D258F624486F68006362DD /* Root.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06D258F524486F68006362DD /* Root.bundle */; };
 		06E62771243B569800B3B68C /* HHAAssetTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E62770243B569800B3B68C /* HHAAssetTypeViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +64,7 @@
 		06D1842D2445C63400804CC9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/HHADetailViewController.strings; sourceTree = "<group>"; };
 		06D1842E2445C63500804CC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HHADetailViewController.xib; sourceTree = "<group>"; };
 		06D1842F2445C9AB00804CC9 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		06D1844C2446003300804CC9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		06D258F524486F68006362DD /* Root.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Root.bundle; sourceTree = "<group>"; };
 		06E6276F243B569800B3B68C /* HHAAssetTypeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHAAssetTypeViewController.h; sourceTree = "<group>"; };
 		06E62770243B569800B3B68C /* HHAAssetTypeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHAAssetTypeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,7 +122,7 @@
 				06BC24BF242CB89C00D08AD6 /* HHAItemCell.xib */,
 				06728F9B24192E0A00FD0F37 /* HHADetailViewController.h */,
 				06728F9C24192E0A00FD0F37 /* HHADetailViewController.m */,
-				06D1844C2446003300804CC9 /* Settings.bundle */,
+				06D258F524486F68006362DD /* Root.bundle */,
 				06D184242445C55700804CC9 /* HHADetailViewController.xib */,
 				06BC24C1242CF28400D08AD6 /* HHAImageViewController.h */,
 				06BC24C2242CF28400D08AD6 /* HHAImageViewController.m */,
@@ -205,11 +205,11 @@
 			files = (
 				06BC24C0242CB89C00D08AD6 /* HHAItemCell.xib in Resources */,
 				06D184302445C9AB00804CC9 /* Localizable.strings in Resources */,
+				06D258F624486F68006362DD /* Root.bundle in Resources */,
 				06CF9BD9241503DA0020F927 /* LaunchScreen.storyboard in Resources */,
 				06D184222445C55700804CC9 /* HHADetailViewController.xib in Resources */,
 				06CF9BD6241503DA0020F927 /* Assets.xcassets in Resources */,
 				06CF9BD4241503D90020F927 /* Main.storyboard in Resources */,
-				06D1844D2446003300804CC9 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

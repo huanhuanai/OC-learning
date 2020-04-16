@@ -16,11 +16,11 @@
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Name</string>
+			<string>NextItemName</string>
 			<key>Key</key>
-			<string>name_preference</string>
+			<string>NextItemName</string>
 			<key>DefaultValue</key>
-			<string></string>
+			<string>Coffee Cup</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>
@@ -28,7 +28,7 @@
 			<key>AutocapitalizationType</key>
 			<string>None</string>
 			<key>AutocorrectionType</key>
-			<string>No</string>
+			<string>Yes</string>
 		</dict>
 		<dict>
 			<key>Type</key>
