@@ -63,6 +63,9 @@
         //设置HHAColorViewController对象的颜色（colorDescription属性）
         UINavigationController *nc = (UINavigationController *)segue.destinationViewController;
         HHAColorViewController *mvc = (HHAColorViewController *)[nc topViewController];
+        mvc.reloadDataBlock = ^{
+            [self.tableView reloadData];
+        };
         mvc.colorDescription = color;
     } else if ([segue.identifier isEqualToString:@"ExistingColor"]) {
         

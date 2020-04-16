@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) HHAColorDescription *colorDescription;
 
+@property (nonatomic, strong) void (^reloadDataBlock)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -58,7 +58,7 @@
 }
 
 - (IBAction)dismiss:(id)sender {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:self.reloadDataBlock];
 }
 
 - (IBAction)changeColor:(id)sender {
